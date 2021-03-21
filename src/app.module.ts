@@ -4,14 +4,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CronjobsModule } from './cronjobs/cronjobs.module';
+import { CommentsModule } from './comments/comments.module';
 
 const connStringTemplate = "mongodb+srv://<user>:<pass>@<host>/<db>?retryWrites=true&w=majority";
 
 @Module({
     imports: [
         ConfigModule.forRoot(),
-        CronjobsModule,
         MongooseModule.forRoot(
             connStringTemplate
             .replace("<user>", process.env?.MONGODB_USERNAME || "noUser")
@@ -19,6 +18,7 @@ const connStringTemplate = "mongodb+srv://<user>:<pass>@<host>/<db>?retryWrites=
             .replace("<host>", process.env?.MONGODB_HOST || "noHost")
             .replace("<db>", process.env?.MONGODB_DBNAME)
         ),
+        CommentsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
