@@ -25,8 +25,8 @@ export class CommentsController {
         return this.commentsService.findAll();
     }
 
-    @Delete(':uuid')
-    remove(@Param('uuid') uuid: string) {
-        return this.commentsService.remove(uuid);
-    }
+    // @Delete(':uuid')
+    // remove(@Param('uuid') uuid: string) {
+    //     return this.commentsService.remove(uuid);
+    // }
 }
