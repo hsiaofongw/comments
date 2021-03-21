@@ -14,6 +14,8 @@ class Visitor {
 export class CreateCommentDto {
     readonly uuid: string;
 
+    readonly replyTo: string;
+
     readonly from: Visitor;
 
     readonly to: Visitor;

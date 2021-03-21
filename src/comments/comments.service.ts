@@ -12,6 +12,13 @@ export class CommentsService {
     async create(createCommentDto: CreateCommentDto): Promise<Comment> {
         const createdComment = new this.commentModel(createCommentDto);
         createdComment.uuid = uuidv4();
+
+        if (createdComment.replyTo) {
+            await this.commentModel.findOneAndUpdate(
+                {uuid: createdComment.replyTo},
+                {"$push": {"uuidOfReplies": createdComment.uuid}}
+            ).exec();
+        }
         return createdComment.save();
     }
 

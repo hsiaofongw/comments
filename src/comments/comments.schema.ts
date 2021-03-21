@@ -15,6 +15,9 @@ export class Comment {
     uuid: string;
 
     @Prop()
+    replyTo: string;
+
+    @Prop()
     from: Visitor;
 
     @Prop()
