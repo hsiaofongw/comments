@@ -10,7 +10,9 @@ const connStringTemplate = "mongodb+srv://<user>:<pass>@<host>/<db>?retryWrites=
 
 @Module({
     imports: [
-        ConfigModule.forRoot(),
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
         MongooseModule.forRoot(
             connStringTemplate
             .replace("<user>", process.env?.MONGODB_USERNAME || "noUser")

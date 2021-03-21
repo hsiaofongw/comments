@@ -1,12 +1,16 @@
-import { Controller, Get, Post, Body, Param, Delete, Header } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Header, Res } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
-
-const cacheAge = process.env?.CACHE_AGE || "0";
+import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('comments')
 export class CommentsController {
-    constructor(private readonly commentsService: CommentsService) { }
+
+    constructor(
+        private readonly commentsService: CommentsService,
+        private configService: ConfigService
+    ) { }
 
     @Post()
     create(@Body() createCommentDto: CreateCommentDto) {
@@ -14,9 +18,10 @@ export class CommentsController {
     }
 
     @Get()
-    @Header('Cache-Control', `public, max-age=${cacheAge}`)
-    @Header('x-debug-info-nest-get-comments', 'good')
-    findAll() {
+    findAll(@Res({ passthrough: true }) res: Response) {
+        const cacheAge = this.configService.get('CACHE_AGE', 0);
+        res.setHeader('Cache-Control', `public, max-age=${cacheAge}`);
+        res.setHeader('x-debug-info-nest-get-comments', 'good');
         return this.commentsService.findAll();
     }
 
