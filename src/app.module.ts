@@ -16,7 +16,8 @@ const connStringTemplate = "mongodb+srv://<user>:<pass>@<host>/<db>?retryWrites=
             .replace("<user>", process.env?.MONGODB_USERNAME || "noUser")
             .replace("<pass>", process.env?.MONGODB_PASSWORD || "noPassword")
             .replace("<host>", process.env?.MONGODB_HOST || "noHost")
-            .replace("<db>", process.env?.MONGODB_DBNAME)
+            .replace("<db>", process.env?.MONGODB_DBNAME),
+            { useFindAndModify: false }
         ),
         CommentsModule,
     ],
