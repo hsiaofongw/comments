@@ -20,8 +20,8 @@ export class CommentsController {
     @Get()
     findAll(@Res({ passthrough: true }) res: Response) {
         const cacheAge = this.configService.get('CACHE_AGE', 0);
-        res.setHeader('Cache-Control', `public, max-age=${cacheAge}, stale-while-revalidate=30, stale-if-error=30`);
-        res.setHeader('x-debug-info-nest-get-comments', 'good');
+        // res.setHeader('Cache-Control', `public, max-age=${cacheAge}, stale-while-revalidate=30, stale-if-error=30`);
+        // res.setHeader('x-debug-info-nest-get-comments', 'good');
         return this.commentsService.findAll();
     }
 
