@@ -4,8 +4,6 @@ import { CommentsController } from './comments.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Comment, CommentSchema } from './schemas/comment.schema';
 import { TransformInterceptor } from './interceptors/transform.interceptor';
-import sha256 from 'crypto-js/sha256';
-import Hex from 'crypto-js/enc-hex';
 
 @Module({
     imports: [
