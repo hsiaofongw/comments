@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommentsModule } from './comments/comments.module';
+import { VisitorsModule } from './visitors/visitors.module';
 
 const connStringTemplate = "mongodb+srv://<user>:<pass>@<host>/<db>?retryWrites=true&w=majority";
 
@@ -22,6 +23,7 @@ const connStringTemplate = "mongodb+srv://<user>:<pass>@<host>/<db>?retryWrites=
             { useFindAndModify: false }
         ),
         CommentsModule,
+        VisitorsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
