@@ -8,4 +8,5 @@ export interface IComment {
     says: string;               
     uuidOfReplies: string[];    
     approved?: boolean;
+    location: string;
 }

@@ -31,6 +31,11 @@ export class CommentsService {
         return data;
     }
 
+    async findByLocation(location: string): Promise<Comment[]> {
+        let data = await this.commentModel.find({location}).select({_id: 0, __v: 0}).exec();
+        return data;
+    }
+
     remove(id: number) {
         return `This action removes a #${id} comment`;
     }

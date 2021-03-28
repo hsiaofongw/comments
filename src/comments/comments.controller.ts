@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, ClassSerializerInterceptor, SerializeOptions } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, ClassSerializerInterceptor, SerializeOptions, Query } from '@nestjs/common';
 import { classToPlain } from 'class-transformer';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -16,9 +16,9 @@ export class CommentsController {
 
     @UseInterceptors(TransformInterceptor)
     @Get()
-    async findAll() {
-        const data = await this.commentsService.findAll();
+    async findCommentsByLocation(@Query('location') location: string) {
+        const data = await this.commentsService.findByLocation(location);
         return data;
-    }
+    }    
 
 }

@@ -37,6 +37,9 @@ export class Comment {
     @Prop()
     approved: boolean;
 
+    @Prop()
+    location: string;
+
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);
